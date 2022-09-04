@@ -3,15 +3,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
-    port: Number(process.env.PORT),
-    mode: process.env.MODE,
-    db_user: process.env.POSTGRES_USER,
-    db_password: process.env.POSTGRES_PASSWORD,
-    db_host: process.env.POSTGRES_HOST,
-    db_name_dev: process.env.POSTGRES_DB_dev,
-    db_name_test: process.env.POSTGRES_DB_test,
-    db_name_prod: process.env.POSTGRES_DB_prod,
-    jwt: {
-        secret_token: process.env.JWT_TOKEN_SECRET
-    }
+	PORT: Number(process.env.PORT),
+	DB_PORT: Number(process.env.POSTGRES_PORT),
+	MODE: String(process.env.MODE),
+	DB_USER: String(process.env.POSTGRES_USER),
+	DB_PASSWORD: String(process.env.POSTGRES_PASSWORD),
+	DB_HOST: String(process.env.POSTGRES_HOST),
+	DB_NAME_DEV: String(process.env.POSTGRES_DB_dev),
+	DB_NAME_TEST: String(process.env.POSTGRES_DB_test),
+	DB_NAME_PROD: String(process.env.POSTGRES_DB_prod),
+	BCRYPT_PEPPER: String(process.env.BCRYPT_PEPPER),
+	BCRYPT_SALT_ROUNDS: Number(process.env.BCRYPT_SALT_ROUNDS),
+	JWT: {
+		SECRET_TOKEN: String(process.env.JWT_TOKEN_SECRET)
+	}
 };
