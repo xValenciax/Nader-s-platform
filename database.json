@@ -1,0 +1,23 @@
+{
+    "dev":{
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "platform_dev",
+        "user": "postgres",
+        "password": "151101"
+    },
+    "test":{
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "platform_test",
+        "user": "postgres",
+        "password": "151101"
+    },
+    "prod":{
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "platform_prod",
+        "user": "postgres",
+        "password": "151101"
+    }
+}
