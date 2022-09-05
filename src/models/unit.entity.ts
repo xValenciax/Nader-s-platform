@@ -1,11 +1,21 @@
 import DB_Client from '../database/database';
-import { config } from '../config/config';
+
+export enum unit_type {
+    unit = 1,
+    revision = 2,
+    test = 3,
+};
+
+export enum release_status {
+    availabe = 0,
+    upcoming = 1
+};
 
 export type unit = {
-    unit_number: number,
-    question: string,
-    answer: string,
-    hint: string
+    id?: number
+    unit_name: string,
+    type: string,
+    release_status: string
 };
 
 export class units{
@@ -17,19 +27,24 @@ export class units{
 		return result.rows;
 	}
 
-	async getUnitByNumber(id: number): Promise<unit> {
+	async getUnitById(id: number): Promise<unit> {
 		const conn = await DB_Client.connect();
-		const sql = `SELECT * FROM unit WHERE id=${id}`;
+		const sql = `SELECT * FROM units WHERE id=${id}`;
 		const result = await conn.query(sql);
-		conn.release();
+        conn.release();
 		return result.rows[0];
 	}
 
-    async insertStudent(unit: unit): Promise<void>{
+    async insertUnit(unit: unit): Promise<void>{
 		const conn = await DB_Client.connect();
 
-		const sql = `INSERT INTO unit(unit_number, question, answer, hint) VALUES($1, $2, $3, $4)`;
-        await conn.query(sql,[]);
+        const sql = `INSERT INTO units(unit_name, unit_type, release_status) VALUES($1, $2, $3)`;
+        await conn.query(sql,
+            [
+                unit.unit_name,
+                unit_type[(unit.type as unknown) as unit_type],
+                release_status[(unit.release_status as unknown) as release_status]
+        ]);
 		conn.release();
 	}
 

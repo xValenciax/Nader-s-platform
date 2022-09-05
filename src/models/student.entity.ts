@@ -12,10 +12,10 @@ export type student = {
 const PEPPER = config.BCRYPT_PEPPER;
 const SALT_ROUNDS = config.BCRYPT_SALT_ROUNDS;
 
-export class users{
+export class students{
 	async index(): Promise<student[]> {
 		const conn = await DB_Client.connect();
-		const sql = 'SELECT * FROM studnets';
+		const sql = 'SELECT * FROM students';
 		const result = await conn.query(sql);
 		conn.release();
 		return result.rows;
@@ -23,16 +23,16 @@ export class users{
 
 	async getUserById(id: string): Promise<student> {
 		const conn = await DB_Client.connect();
-		const sql = `SELECT * FROM studnets WHERE stud_id=${id}`;
-		const result = await conn.query(sql);
+		const sql = `SELECT * FROM students WHERE stud_id=$1`;
+		const result = await conn.query(sql, [id]);
 		conn.release();
 		return result.rows[0];
 	}
 
 	async ForgotPasswordOrId(email: string): Promise<student>{
 		const conn = await DB_Client.connect();
-		const sql = `SELECT stud_id, password FROM studnets WHERE email=${email}`;
-		const result = await conn.query(sql);
+		const sql = `SELECT stud_id, password FROM students WHERE email=$1`;
+		const result = await conn.query(sql, [email]);
 		conn.release();
 		return result.rows[0];
 	}
@@ -43,7 +43,7 @@ export class users{
 			student.password + PEPPER,
 			SALT_ROUNDS
 		);
-
+		console.log(`from inside database ${student.name}`);
 		const sql = `INSERT INTO students(stud_id, name, email, password) VALUES($1, $2, $3, $4)`;
 		await conn.query(sql, [student.stud_id, student.name, student.email, hash]);
 		conn.release();
