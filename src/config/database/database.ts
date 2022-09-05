@@ -1,4 +1,4 @@
-import { config } from '../config/config';
+import { config } from '../config';
 import { Pool } from 'pg';
 
 let DB_Client: Pool = new Pool;

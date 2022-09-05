@@ -1,4 +1,4 @@
-import { student, students } from '../../models/student.entity';
+import { students } from '../../models/student.entity';
 import bcrypt from 'bcrypt';
 import { config } from '../../config/config';
 
@@ -7,7 +7,7 @@ describe('1) Student entity test', () => {
     const stud_id = 'baf554b6-ddb2-4b2e-aaf0-8f1b8dcd150c';
     const name = 'Mahmoud Mohamed';
     const email = 'mamo31st@gmail.com';
-    const password = 'hhhnnnhhh1'
+    const password = 'hhhnnnhhh1';
 
     beforeAll(async () => {
 
@@ -39,4 +39,4 @@ describe('1) Student entity test', () => {
         expect(comparison).toBe(true);
     });
 
-})
+});

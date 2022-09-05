@@ -1,4 +1,4 @@
-import DB_Client from '../database/database';
+import DB_Client from '../config/database/database';
 
 export type question = {
 	id?: number

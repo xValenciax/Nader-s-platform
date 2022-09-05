@@ -1,15 +1,15 @@
-import DB_Client from '../database/database';
+import DB_Client from '../config/database/database';
 
 export enum unit_type {
     unit = 1,
     revision = 2,
     test = 3,
-};
+}
 
 export enum release_status {
     availabe = 0,
     upcoming = 1
-};
+}
 
 export type unit = {
     id?: number

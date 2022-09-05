@@ -12,7 +12,6 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "indent": [1, "space"],
     "linebreak-style": [1, "windows"],
     "quotes": [
       "error",

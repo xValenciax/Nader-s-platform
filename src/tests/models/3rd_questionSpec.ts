@@ -1,9 +1,8 @@
-import { questions } from "../../models/question.entity";
+import { questions } from '../../models/question.entity';
 
 describe('2) unit entity test', () => { 
     const unit = new questions();
     const unit_id = 1;
-    const unit_name = 'unit 1';
     const question = 'how are ...?';
     const answer = 'you';
     const hint = 'double check the phrases section in unit 1';
