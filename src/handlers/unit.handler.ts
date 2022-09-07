@@ -37,7 +37,7 @@ export const showUnit = async (req: Request, res: Response): Promise<void> => {
 };
 
 //admin route
-export const addUnit = async (req: Request, res: Response) => {
+export const addUnit = async (req: Request, res: Response): Promise<void> => {
     const newUnit: unit = {
         unit_name: req.body.unit_name,
         unit_type: req.body.unit_type,
@@ -57,7 +57,7 @@ export const addUnit = async (req: Request, res: Response) => {
     else res.status(400).json('Please, provide the required information').end();
 };
 
-export const deleteUnit = async (req: Request, res: Response) => {
+export const deleteUnit = async (req: Request, res: Response): Promise<void> => {
     const unit_id = parseInt(req.params.unit_id);
 
     try {
@@ -66,5 +66,55 @@ export const deleteUnit = async (req: Request, res: Response) => {
     }
     catch(err) {
         res.status(500).json('Internal Server Error' + err).end();
+    }
+};
+
+export const getAvailableUnits = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const result = await uni.getUnitByStatus('available');
+        res.status(200).json(result);
+    }
+    catch (err) {
+        res.status(500).json('Internal Server Error' + err);
+    }
+};
+
+export const getUpcomingUnits = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const result = await uni.getUnitByStatus('upcoming');
+        res.status(200).json(result);
+    }
+    catch (err) {
+        res.status(500).json('Internal Server Error' + err);
+    }
+};
+
+export const getUnitsOnly = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const result = await uni.getUnitByType('unit');
+        res.status(200).json(result);
+    }
+    catch (err) {
+        res.status(500).json('Internal Server Error' + err);
+    }
+};
+
+export const getRevisionOnly = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const result = await uni.getUnitByType('revision');
+        res.status(200).json(result);
+    }
+    catch (err) {
+        res.status(500).json('Internal Server Error' + err);
+    }
+};
+
+export const getTestOnly = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const result = await uni.getUnitByType('test');
+        res.status(200).json(result);
+    }
+    catch (err) {
+        res.status(500).json('Internal Server Error' + err);
     }
 };

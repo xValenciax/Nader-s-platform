@@ -59,4 +59,28 @@ export class units{
         await conn.query(sql);
 		conn.release();
     }
+
+    async getUnitByStatus(status: string) {
+        const conn = await DB_Client.connect();
+        
+        const sql = `SELECT * FROM units WHERE release_status=${status}`;
+        const result = (await conn.query(sql)).rows;
+        for (const ele of result) {
+            ele.unit_type = unit_type[Number(ele.unit_type)];
+            ele.release_status = release_status[Number(ele.release_status)];
+        }
+        return result;
+    }
+
+    async getUnitByType(type: string) {
+        const conn = await DB_Client.connect();
+        
+        const sql = `SELECT * FROM units WHERE unit_type=${type}`;
+        const result = (await conn.query(sql)).rows;
+        for (const ele of result) {
+            ele.unit_type = unit_type[Number(ele.unit_type)];
+            ele.release_status = release_status[Number(ele.release_status)];
+        }
+        return result;
+    }
 }

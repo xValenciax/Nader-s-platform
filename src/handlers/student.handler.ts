@@ -45,7 +45,7 @@ export const showStudent = async (req: Request, res: Response): Promise<void> =>
 };
 
 //admin route
-export const addStudent = async (req: Request, res: Response) => {
+export const addStudent = async (req: Request, res: Response): Promise<void> => {
     const password = generator.generate({
         length: 15,
         numbers: true,
@@ -80,7 +80,7 @@ export const addStudent = async (req: Request, res: Response) => {
     else res.status(400).json('Both Email And Name Field Must Be Provided').end();
 };
 
-export const deleteStudent = async (req: Request, res: Response) => {
+export const deleteStudent = async (req: Request, res: Response): Promise<void> => {
     const stud_id = req.params.stud_id;
 
     try {

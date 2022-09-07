@@ -45,7 +45,7 @@ export const showadmin = async (req: Request, res: Response): Promise<void> => {
 };
 
 //admin route
-export const addadmin = async (req: Request, res: Response) => {
+export const addadmin = async (req: Request, res: Response): Promise<void> => {
     const password = generator.generate({
         length: 15,
         numbers: true,
@@ -82,7 +82,7 @@ export const addadmin = async (req: Request, res: Response) => {
     else res.status(400).json('Both Email And Name Field Must Be Provided').end();
 };
 
-export const deleteadmin = async (req: Request, res: Response) => {
+export const deleteadmin = async (req: Request, res: Response): Promise<void> => {
     const admin_id = req.params.admin_id;
 
     try {

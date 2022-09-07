@@ -37,7 +37,7 @@ export const showQuestion = async (req: Request, res: Response): Promise<void> =
 };
 
 //admin route
-export const addUnit = async (req: Request, res: Response) => {
+export const addQuestion = async (req: Request, res: Response): Promise<void> => {
     const newquestion: question = {
         question: req.body.question,
         answer: req.body.answer,
@@ -57,7 +57,7 @@ export const addUnit = async (req: Request, res: Response) => {
     else res.status(400).json('Please, provide the required information').end();
 };
 
-export const deleteUnit = async (req: Request, res: Response) => {
+export const deleteQuestion = async (req: Request, res: Response): Promise<void> => {
     const ques_id = parseInt(req.params.question_id);
 
     try {
