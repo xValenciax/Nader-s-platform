@@ -7,14 +7,14 @@ export enum unit_type {
 }
 
 export enum release_status {
-    availabe = 0,
+    available = 0,
     upcoming = 1
 }
 
 export type unit = {
     id?: number
     unit_name: string,
-    type: string,
+    unit_type: string,
     release_status: string
 };
 
@@ -22,9 +22,13 @@ export class units{
     async index(): Promise<unit[]> {
 		const conn = await DB_Client.connect();
 		const sql = 'SELECT * FROM units';
-		const result = await conn.query(sql);
-		conn.release();
-		return result.rows;
+		const result = (await conn.query(sql)).rows;
+        conn.release();
+        for (const ele of result) {
+            ele.unit_type = unit_type[Number(ele.unit_type)];
+            ele.release_status = release_status[Number(ele.release_status)];
+        }
+		return result;
 	}
 
 	async getUnitById(id: number): Promise<unit> {
@@ -42,7 +46,7 @@ export class units{
         await conn.query(sql,
             [
                 unit.unit_name,
-                unit_type[(unit.type as unknown) as unit_type],
+                unit_type[(unit.unit_type as unknown) as unit_type],
                 release_status[(unit.release_status as unknown) as release_status]
         ]);
 		conn.release();

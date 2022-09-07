@@ -14,7 +14,7 @@ const adm: admins = new admins();
 export const displayadmins = async (req: Request, res: Response): Promise<void> => {
     try {
         const result = await adm.index();
-        if (result != undefined || result != null)
+        if (result !== undefined)
             res.status(200).json(result).end();
         else
             res.status(500).json('Internal Server Error').end();
@@ -31,7 +31,7 @@ export const showadmin = async (req: Request, res: Response): Promise<void> => {
     const student_id = req.params.admin_id;
     try {
         const result = await adm.getadminById(student_id);
-        if (result !== undefined || result !== null)
+        if (result !== undefined)
             res.status(200).json(result).end();
         else
             res.status(500).json('Internal Server Error').end();
@@ -60,8 +60,7 @@ export const addadmin = async (req: Request, res: Response) => {
         password
     };
 
-    if ((admini.name !== undefined || admini.email !== null) &&
-        (admini.email !== undefined || admini.name !== null)) {
+    if (admini.name !== undefined && admini.email !== undefined) {
         try {
             const jwt_token = jwt.sign({
                     name: admini.name,

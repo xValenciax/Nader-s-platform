@@ -2,13 +2,13 @@ import { units, release_status as rel_status } from '../../models/unit.entity';
 describe('2) unit entity test', () => { 
     const unit = new units();
     const unit_name = 'unit 1';
-    const type = 'revision';
+    const unit_type = 'revision';
     const release_status = 'upcoming';
     beforeAll(async () => {
 
         const unit_obj = {
             unit_name,
-            type,
+            unit_type,
             release_status,
         };
 

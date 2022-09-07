@@ -22,6 +22,7 @@ export const login_service = async (req: Request, res: Response): Promise<void> 
                 const token = jwt.sign({
                         id: returnedCredentials.stud_id,
                         name: returnedCredentials.name,
+                        role: 'student'
                     },
                         (JWT_SECRET as unknown) as jwt.Secret,
                     {
