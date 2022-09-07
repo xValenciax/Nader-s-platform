@@ -6,6 +6,8 @@ export const config = {
 	PORT: Number(process.env.PORT),
 	DB_PORT: Number(process.env.POSTGRES_PORT),
 	MODE: String(process.env.MODE),
+	ADMIN_ID: String(process.env.ADMIN_ID),
+	ADMIN_HASH: String(process.env.ADMIN_HASH),
 	DB_USER: String(process.env.POSTGRES_USER),
 	DB_PASSWORD: String(process.env.POSTGRES_PASSWORD),
 	DB_HOST: String(process.env.POSTGRES_HOST),

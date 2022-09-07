@@ -44,6 +44,7 @@
     "concurrently": "^7.3.0",
     "db-migrate-pg": "^1.2.2",
     "eslint": "^8.23.0",
+    "generate-password": "^1.7.0",
     "jasmine": "^4.4.0",
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.19",

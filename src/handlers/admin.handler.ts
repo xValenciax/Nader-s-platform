@@ -1,4 +1,4 @@
-import { students, student } from '../models/student.entity';
+import { admins, admin } from '../models/admin.entity';
 import { Request, Response} from 'express';
 import { config } from '../config/config';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,29 +8,29 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = config.JWT.SECRET_TOKEN;
 const MODE = config.MODE;
 
-const stud: students = new students();
+const adm: admins = new admins();
 
 // admin route
-export const displayStudents = async (req: Request, res: Response): Promise<void> => {
+export const displayadmins = async (req: Request, res: Response): Promise<void> => {
     try {
-        const result = await stud.index();
+        const result = await adm.index();
         if (result != undefined || result != null)
             res.status(200).json(result).end();
         else
-            res.status(500).json('No results returned from database').end();
+            res.status(500).json('Internal Server Error').end();
     }
     catch (err) {
         if (MODE === 'test' || MODE === 'dev')
             res.status(400).json(err).end();
         else
-            res.status(400).json('Bad Request' + err).end();
+            res.status(400).json('Bad Request').end();
     }
 };
 
-export const showStudent = async (req: Request, res: Response): Promise<void> => {
-    const student_id = req.params.stud_id;
+export const showadmin = async (req: Request, res: Response): Promise<void> => {
+    const student_id = req.params.admin_id;
     try {
-        const result = await stud.getStudentById(student_id);
+        const result = await adm.getadminById(student_id);
         if (result !== undefined || result !== null)
             res.status(200).json(result).end();
         else
@@ -40,38 +40,40 @@ export const showStudent = async (req: Request, res: Response): Promise<void> =>
         if (MODE === 'test' || MODE === 'dev')
             res.status(400).json(err).end();
         else
-            res.status(400).json('Bad Request' + err).end();
+            res.status(400).json('Bad Request').end();
     }
 };
 
 //admin route
-export const addStudent = async (req: Request, res: Response) => {
+export const addadmin = async (req: Request, res: Response) => {
     const password = generator.generate({
         length: 15,
         numbers: true,
+        symbols: true,
         lowercase: true,
-        uppercase: true,
+        uppercase: true
     });
-    const newStudent: student = {
-        stud_id: uuidv4(),
-        name: req.body.stud_name,
-        email: req.body.stud_email,
+    const admini: admin = {
+        admin_id: uuidv4(),
+        name: req.body.admin_name,
+        email: req.body.admin_email,
         password
     };
 
-    if ((newStudent.name !== undefined || newStudent.email !== null) &&
-        (newStudent.email !== undefined || newStudent.name !== null)) {
+    if ((admini.name !== undefined || admini.email !== null) &&
+        (admini.email !== undefined || admini.name !== null)) {
         try {
             const jwt_token = jwt.sign({
-                    name: newStudent.name,
-                    id: newStudent.stud_id
+                    name: admini.name,
+                    id: admini.admin_id,
+                    role: 'admin'
                 },
                 (JWT_SECRET as unknown) as jwt.Secret,
                 {
                     expiresIn: '24h'
                 }
             );
-            await stud.insertStudent(newStudent);
+            await adm.insertadmin(admini);
             res.status(201).json('Student Added Successfully\n' + jwt_token).end();
         }
         catch(err) {
@@ -81,11 +83,11 @@ export const addStudent = async (req: Request, res: Response) => {
     else res.status(400).json('Both Email And Name Field Must Be Provided').end();
 };
 
-export const deleteStudent = async (req: Request, res: Response) => {
-    const stud_id = req.params.stud_id;
+export const deleteadmin = async (req: Request, res: Response) => {
+    const admin_id = req.params.admin_id;
 
     try {
-        await stud.deleteStudent(stud_id);
+        await adm.deleteadmin(admin_id);
         res.status(200).json('Student Deleted Successfully').end();
     }
     catch(err) {

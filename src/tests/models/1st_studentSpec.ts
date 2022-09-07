@@ -29,7 +29,7 @@ describe('1) Student entity test', () => {
     });
     
     it('1.2) expects getUserById function to return a student whose name is name', async () => {
-        const res = await stud_obj.getUserById(stud_id);
+        const res = await stud_obj.getStudentById(stud_id);
         expect(res.name).toBe(name);
     });
     
