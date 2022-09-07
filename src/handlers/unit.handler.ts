@@ -1,4 +1,4 @@
-import { units, unit, unit_type, release_status } from '../models/unit.entity';
+import { units, unit } from '../models/unit.entity';
 import { Request, Response } from 'express';
 import { config } from '../config/config';
 

@@ -1,5 +1,5 @@
-import { displayStudents, showStudent, addStudent, deleteStudent } from '../handlers/student.handler';
-import { authenticate_admin} from '../services/middlewares/auth.service';
+import { displayStudents, showStudent, addStudent, deleteStudent } from '../../handlers/student.handler';
+import { authenticate_admin} from '../../services/middlewares/auth.service';
 import express from 'express';
 
 const student_routes = (app: express.Application) => {

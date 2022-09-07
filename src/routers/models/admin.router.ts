@@ -1,5 +1,5 @@
-import { displayadmins, showadmin, addadmin, deleteadmin } from '../handlers/admin.handler';
-import { authenticate_admin } from '../services/middlewares/auth.service';
+import { displayadmins, showadmin, addadmin, deleteadmin } from '../../handlers/admin.handler';
+import { authenticate_admin } from '../../services/middlewares/auth.service';
 import express from 'express';
 
 const admin_routes = (app: express.Application) => {
