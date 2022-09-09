@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    background: url('../../assets/welcome.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(26, 235, 182, 0.3);
+}
+
+section .loader {
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+section .loader span {
+    animation: load 1.4s linear infinite;
+    -webkit-animation: load 1.4s linear infinite;
+}
+
+@keyframes load {
+
+    0% {
+        color: white;
+        text-shadow: none;
+    }
+
+    80% {
+        color: white;
+        text-shadow: none;
+    }
+
+    100% {
+        color: #29ffca;
+        text-shadow: 0 0 20px #29ffca;
+    }
+}
+
+section .loader span:first-child {
+    animation-delay: 0.2s;
+}
+
+section .loader span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+section .loader span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+section .loader span:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+section .loader span:nth-child(5) {
+    animation-delay: 1s;
+}
+
+section .loader span:nth-child(6) {
+    animation-delay: 1.2s;
+}
+
+section .loader span:last-child {
+    animation-delay: 1.4s;
+}

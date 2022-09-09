@@ -1,0 +1,423 @@
+/* GLOBAL VARIABLES Start */
+:root {
+    --var_pass_icon: "\f13e";
+    --var_id_icon: "\f2c2";
+    --main_box_shadow: rgb(26, 235, 182);
+    --secondary_box_shadow: rgba(255, 255, 255, 0.6);
+}
+
+/* GLOBAL VARIABLES End */
+
+/* GLOBAL RULES Start */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* GLOBAL RULES END */
+
+/* container */
+.container {
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* small screens */
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* medium screens */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* large screens */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+/* End container */
+
+/* main section Start */
+section {
+    background-image: url('../../assets/welcome.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    section {
+        overflow: hidden;
+    }
+}
+
+/* background overlay */
+section::before {
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 235, 182, 0.2);
+}
+
+/* set container to flex to center elements */
+section .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* login box rules */
+section .login-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 150px);
+    background-color: rgb(26, 235, 182, 0.4);
+    box-shadow: 0 0 20px var(--main_box_shadow);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+section .login-box>h2 {
+    cursor: default;
+    color: white;
+    font-size: 4rem;
+    text-transform: capitalize;
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px rgb(1, 104, 79);
+}
+
+/* display form fields horizontally */
+section .login-box form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* input fields common rules */
+section .login-box form input {
+    position: relative;
+    width: 350px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    padding: 10px 30px;
+    outline: none;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
+/* Icon in password field rules */
+section .login-box form .pass i {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    margin-top: 6px;
+    margin-right: 10px;
+    color: var(--main_box_shadow);
+}
+
+/* Icon in password field rules */
+section .login-box form .id i {
+    position: absolute;
+    top: 20%;
+    left: 4%;
+    margin-top: 2px;
+    margin-right: 10px;
+    color: var(--main_box_shadow);
+}
+
+/* custom placeholder for input fields */
+.id_placeholder,
+.pass_placeholder {
+    font-size: 18px;
+    position: absolute;
+    color: rgba(15, 160, 124, 0.7);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
+    user-select: none;
+}
+
+/* utility classes for placeholder animation */
+.id_placeholder {
+    top: 20%;
+    left: 50%;
+    margin-top: 1px;
+    margin-left: 10px;
+    z-index: 3;
+}
+
+.pass_placeholder {
+    top: 50%;
+    left: 50%;
+    margin-top: 5px;
+    margin-left: 5px;
+    z-index: 3;
+}
+
+.id_placeholder_focus {
+    top: 10px;
+    left: 30px;
+    color: white;
+    font-size: 14px;
+}
+
+.pass_placeholder_focus {
+    color: white;
+    font-size: 14px;
+    top: 85px;
+    left: 30px;
+
+}
+
+/* utility classes for placeholder animation */
+
+/* change icon background when in input field in-focus */
+section .login-box form .id input:focus-visible~i,
+section .login-box form .pass input:focus-visible~i {
+    color: white;
+}
+
+/* set shadow to input field when hovered over but not in-focus */
+section .login-box form input:not(:focus-visible):hover {
+    box-shadow: 0 0 20px var(--secondary_box_shadow);
+}
+
+/* set shadow to input field when in */
+section .login-box form input:focus-visible {
+    background-color: var(--main_box_shadow);
+    color: white;
+}
+
+section .login-box form input,
+section .login-box form button {
+    margin-top: 40px;
+}
+
+/* utility classes for valid and invalid input states */
+.invalid {
+    box-shadow: 0 0 20px rgb(255, 0, 0);
+}
+
+.valid {
+    box-shadow: 0 0 20px rgb(47, 255, 0);
+}
+
+/* utility classes for valid and invalid input states */
+
+/* button utility class */
+.btn {
+    width: 200px;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid var(--main_box_shadow);
+    color: var(--main_box_shadow);
+    outline: none;
+    padding: 10px;
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
+.btn::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f52b";
+    font-weight: 600;
+    margin-right: 20px;
+    position: relative;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: var(--main_box_shadow);
+    box-shadow: 0 0 10px var(--secondary_box_shadow);
+    border: 1px solid white;
+    color: white;
+    scale: 0.9;
+}
+
+.btn:hover::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f52a";
+    font-weight: 600;
+    margin-right: 20px;
+    position: relative;
+}
+
+/* button utility class */
+
+/* Start popup component */
+
+.popup {
+    /* z-index: -1; */
+    position: absolute;
+    top: -100%;
+    background-color: white;
+    width: 450px;
+    height: 450px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
+.popup_show {
+    z-index: 10;
+    top: 18%;
+    margin-top: 6px;
+}
+
+.popup i {
+    position: absolute;
+    top: -27px;
+    left: 50%;
+    font-size: 100px;
+    color: #007fff;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.popup h2 {
+    font-family: 'Uncial Antiqua', cursive;
+    color: #007fff;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.popup p {
+    width: 250px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    line-height: 1.8;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.popup .btn-pop {
+    border: 3px solid white;
+    background-color: var(--main_box_shadow);
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 1.8;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
+.popup .btn-pop:hover {
+    cursor: pointer;
+    background-color: white;
+    border-color: var(--main_box_shadow);
+    box-shadow: 0 0 10px var(--secondary_box_shadow);
+    color: var(--main_box_shadow);
+}
+
+
+/* End popup component */
+/* main section End */

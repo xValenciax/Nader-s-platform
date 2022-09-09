@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!-- normalize css -->
+    <link rel="stylesheet" href="../CSS/normalize.css" />
+
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="../CSS/all.min.css" />
+
+    <!-- login style -->
+    <link rel="stylesheet" href="../CSS/pages/login.css" />
+
+    <!-- claymorphism css -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/claymorphism-css/dist/clay.css"
+    />
+
+    <!-- cairo font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Unical Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Uncial+Antiqua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div class="login-box">
+          <h2>login</h2>
+          <form id="login">
+            <div class="id">
+              <input
+                class=""
+                type="text"
+                name="stud_id"
+                id="stud_id"
+                required
+                autocomplete="off"
+                pattern="(([a-fA-F0-9]{8})-([a-fA-F0-9]{4})-([a-fA-F0-9]{4})-([a-fA-F0-9]{4})-([a-fA-F0-9]{12}))"
+              />
+              <span class="id_placeholder" id="id_placeholder">
+                Student Id
+              </span>
+              <i class="fa-solid fa-id-card" id="card"></i>
+            </div>
+            <div class="pass">
+              <input
+                class=""
+                type="password"
+                name="pass"
+                id="pass"
+                required
+                autocomplete="off"
+                pattern="^(?=.*|d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^wds:])([^s]){15}$"
+              />
+              <span class="pass_placeholder" id="pass_placeholder">
+                Password
+              </span>
+              <i class="fa-solid fa-unlock-keyhole" id="lock"></i>
+            </div>
+            <button type="submit" class="btn" id="sbmt_btn">Login</button>
+          </form>
+          <div class="popup">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>success</h2>
+            <p>
+              you have provided the correct credentials <br />
+              you can now go to your home page
+            </p>
+            <button class="btn-pop" id="go_home">Go Home</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="../JS/pages/login.js"></script>
+  </body>
+</html>
